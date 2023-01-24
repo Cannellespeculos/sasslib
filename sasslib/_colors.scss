@@ -1,0 +1,59 @@
+@each $key,
+$val in $colors {
+    .text-#{$key} {
+        color: $val;
+    }
+
+    .bg-#{$key} {
+        background-color: $val;
+    }
+
+    //light variation
+    @for $i from 1 through 9 {
+        .text-#{$key}-light-#{$i} {
+            color: mix(white, $val, $i * 10);
+        }
+
+        .bg-#{$key}-light-#{$i} {
+            background-color: mix(white, $val, $i * 10);
+        }
+    }
+
+    //dark variation
+    @for $i from 1 through 9 {
+        .text-#{$key}-dark-#{$i} {
+            color: mix(black, $val, $i * 10);
+        }
+
+        .bg-#{$key}-dark-#{$i} {
+            background-color: mix(black, $val, $i * 10);
+        }
+    }
+}
+
+@mixin avatar($size, $blue: false) {
+    width: $size;
+    height: $size;
+    background-color: red;
+
+    @if $blue {
+        background-color: blue;
+    }
+}
+
+.bg-red {
+    @include avatar(100px, $blue: false)
+}
+
+.bg-blue {
+    @include avatar(100px, $blue: true)
+}
+
+@for $i from 2 through 10 {
+    @if $i%2 ==0 {
+        .color-#{$i} {
+            background-color: blue;
+        }
+    }
+
+}
